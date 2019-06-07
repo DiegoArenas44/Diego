@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLineaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLineaLabel_lineaPK_idLINEA}" for="lineaPK_idLINEA" />
+                    <h:inputText id="lineaPK_idLINEA" value="#{lineaController.selected.lineaPK.idLINEA}" title="#{bundle.CreateLineaTitle_lineaPK_idLINEA}" required="true" requiredMessage="#{bundle.CreateLineaRequiredMessage_lineaPK_idLINEA}"/>
+                    <h:outputLabel value="#{bundle.CreateLineaLabel_estadoLinea}" for="estadoLinea" />
+                    <h:inputText id="estadoLinea" value="#{lineaController.selected.estadoLinea}" title="#{bundle.CreateLineaTitle_estadoLinea}" />
+                    <h:outputLabel value="#{bundle.CreateLineaLabel_persona}" for="persona" />
+                    <h:selectOneMenu id="persona" value="#{lineaController.selected.persona}" title="#{bundle.CreateLineaTitle_persona}" required="true" requiredMessage="#{bundle.CreateLineaRequiredMessage_persona}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{lineaController.create}" value="#{bundle.CreateLineaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{lineaController.prepareList}" value="#{bundle.CreateLineaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLineaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

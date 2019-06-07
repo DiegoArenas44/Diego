@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEquipoLabel_equipoPK_idEQUIPO}" for="equipoPK_idEQUIPO" />
+                    <h:inputText id="equipoPK_idEQUIPO" value="#{equipoController.selected.equipoPK.idEQUIPO}" title="#{bundle.CreateEquipoTitle_equipoPK_idEQUIPO}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_equipoPK_idEQUIPO}"/>
+                    <h:outputLabel value="#{bundle.CreateEquipoLabel_marca}" for="marca" />
+                    <h:inputText id="marca" value="#{equipoController.selected.marca}" title="#{bundle.CreateEquipoTitle_marca}" />
+                    <h:outputLabel value="#{bundle.CreateEquipoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{equipoController.selected.descripcion}" title="#{bundle.CreateEquipoTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateEquipoLabel_estadoEquipo}" for="estadoEquipo" />
+                    <h:inputText id="estadoEquipo" value="#{equipoController.selected.estadoEquipo}" title="#{bundle.CreateEquipoTitle_estadoEquipo}" />
+                    <h:outputLabel value="#{bundle.CreateEquipoLabel_linea}" for="linea" />
+                    <h:selectOneMenu id="linea" value="#{equipoController.selected.linea}" title="#{bundle.CreateEquipoTitle_linea}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_linea}">
+                        <f:selectItems value="#{lineaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{equipoController.create}" value="#{bundle.CreateEquipoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{equipoController.prepareList}" value="#{bundle.CreateEquipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEquipoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
